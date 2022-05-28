@@ -3,12 +3,14 @@ import PostForm from "./PostForm";
 import styled from "styled-components";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import { addPost } from "../../features/postSlice";
 const AddPost = () => {
   const [postTitle, setPostTitle] = useState("");
   const [postContent, setPostContent] = useState("");
   const [userId, setUserId] = useState("");
   const users = useSelector((state) => state.users);
+  const navigate = useNavigate();
 
   const dispatch = useDispatch();
   const onAddPost = () => {
@@ -17,6 +19,7 @@ const AddPost = () => {
     dispatch(
       addPost({ userId, name: userName, title: postTitle, body: postContent })
     );
+    navigate("/");
   };
 
   return (
